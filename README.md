@@ -31,3 +31,7 @@ https://api-midterm-bd2m.onrender.com
 
 Video:
 https://youtu.be/MxwJYEUpsJ8
+
+API-Docs: 
+https://api-midterm-bd2m.onrender.com/api-docs/
+

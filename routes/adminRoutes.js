@@ -19,29 +19,20 @@
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - subscriber_no
- *               - month
- *               - total_amount
  *             properties:
  *               subscriber_no:
  *                 type: integer
- *                 example: 1001
  *               month:
  *                 type: string
- *                 example: "2024-10"
  *               total_amount:
  *                 type: number
- *                 example: 125.50
- *               paid_amount:
- *                 type: number
- *                 example: 0
- *               status:
- *                 type: string
- *                 example: "pending"
- *               details:
- *                 type: string
- *                 example: "Calls, SMS, Data usage"
+ *     responses:
+ *       200:
+ *         description: Bill added successfully
+ *       400:
+ *         description: Invalid request
+ *       404:
+ *         description: Subscriber not found
  */
 
 
@@ -49,7 +40,7 @@
  * @swagger
  * /admin/add-bill-batch:
  *   post:
- *     summary: Add multiple bills from a batch JSON list
+ *     summary: Add multiple bills from JSON list
  *     tags: [Admin]
  *     security:
  *       - BearerAuth: []
@@ -64,29 +55,18 @@
  *                 type: array
  *                 items:
  *                   type: object
- *                   required:
- *                     - subscriber_no
- *                     - month
- *                     - total_amount
  *                   properties:
  *                     subscriber_no:
  *                       type: integer
- *                       example: 1001
  *                     month:
  *                       type: string
- *                       example: "2024-11"
  *                     total_amount:
  *                       type: number
- *                       example: 150.75
- *                     paid_amount:
- *                       type: number
- *                       example: 0
- *                     status:
- *                       type: string
- *                       example: "pending"
- *                     details:
- *                       type: string
- *                       example: "Batch uploaded bill"
+ *     responses:
+ *       200:
+ *         description: Batch processing result
+ *       400:
+ *         description: Invalid batch format
  */
 
 

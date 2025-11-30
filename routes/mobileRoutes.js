@@ -49,7 +49,13 @@
  *         required: true
  *         schema:
  *           type: string
+ *     responses:
+ *       200:
+ *         description: Detailed bill returned
+ *       404:
+ *         description: Bill not found
  */
+
 
 const express = require('express');
 const router = express.Router();

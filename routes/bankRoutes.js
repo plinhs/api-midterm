@@ -11,8 +11,7 @@
  *   get:
  *     summary: Get unpaid bills
  *     tags: [Banking]
- *     security:
- *       - BearerAuth: []
+
  *     parameters:
  *       - in: query
  *         name: subscriber_no

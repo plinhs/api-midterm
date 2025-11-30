@@ -11,8 +11,6 @@
  *   post:
  *     summary: Add a bill
  *     tags: [Admin]
- *     security:
- *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -42,8 +40,6 @@
  *   post:
  *     summary: Add multiple bills from JSON list
  *     tags: [Admin]
- *     security:
- *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

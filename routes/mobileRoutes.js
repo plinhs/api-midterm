@@ -11,8 +11,6 @@
  *   get:
  *     summary: Query bill
  *     tags: [Mobile]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: query
  *         name: subscriber_no
@@ -36,8 +34,6 @@
  *   get:
  *     summary: Query detailed bill
  *     tags: [Mobile]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: query
  *         name: subscriber_no

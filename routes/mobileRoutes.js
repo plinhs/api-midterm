@@ -60,9 +60,9 @@
 const express = require('express');
 const router = express.Router();
 const MobileController = require('../controllers/MobileController');
-const auth = require('../middleware/auth');
+//const auth = require('../middleware/auth');
 
-router.get('/query-bill', auth, (req, res) => MobileController.queryBill(req, res));
-router.get('/query-bill-detailed', auth, (req, res) => MobileController.queryBillDetailed(req, res));
+//router.get('/query-bill', auth, (req, res) => MobileController.queryBill(req, res));
+//router.get('/query-bill-detailed', auth, (req, res) => MobileController.queryBillDetailed(req, res));
 
 module.exports = router;

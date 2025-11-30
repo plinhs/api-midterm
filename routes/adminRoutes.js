@@ -73,9 +73,9 @@
 const express = require('express');
 const router = express.Router();
 const AdminController = require('../controllers/AdminController');
-const auth = require('../middleware/auth');
+//const auth = require('../middleware/auth');
 
-router.post('/add-bill', auth, (req, res) => AdminController.addBill(req, res));
-router.post('/add-bill-batch', auth, (req, res) => AdminController.addBillBatch(req, res));
+//router.post('/add-bill', auth, (req, res) => AdminController.addBill(req, res));
+//router.post('/add-bill-batch', auth, (req, res) => AdminController.addBillBatch(req, res));
 
 module.exports = router;

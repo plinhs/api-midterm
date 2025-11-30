@@ -20,13 +20,13 @@ const options = {
             }
         ],
         components: {
-            securitySchemes: {
-                BearerAuth: {
-                    type: "http",
-                    scheme: "bearer",
-                    bearerFormat: "JWT"
-                }
-            }
+            // securitySchemes: {
+            //     BearerAuth: {
+            //         type: "http",
+            //         scheme: "bearer",
+            //         bearerFormat: "JWT"
+            //     }
+            // }
         }
     },
     apis: ["./routes/*.js"], // Route files contain the annotations

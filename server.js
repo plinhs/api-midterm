@@ -19,9 +19,14 @@ app.get('/', (req, res) => {
     res.send("Mobile Billing API is running...");
 });
 
-app.get("/debug-secret", (req, res) => {
-    res.send(process.env.JWT_SECRET);
+app.get("/debug-env", (req, res) => {
+    res.json({
+        JWT_SECRET: process.env.JWT_SECRET,
+        jwt_secret: process.env.jwt_secret,
+        keys: Object.keys(process.env)
+    });
 });
+
 
 
 const PORT = process.env.PORT || 3000;

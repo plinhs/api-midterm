@@ -21,3 +21,6 @@ The system allows:
 
 Backend (Render)
 https://api-midterm-bd2m.onrender.com
+
+Video:
+https://youtu.be/MxwJYEUpsJ8

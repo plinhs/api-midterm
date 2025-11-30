@@ -34,6 +34,7 @@ const express = require('express');
 const router = express.Router();
 const WebsiteController = require('../controllers/WebsiteController');
 
-router.post('/pay-bill', (req, res) => WebsiteController.payBill(req, res));
+const websiteController = new WebsiteController();
 
+router.post('/pay-bill', (req, res) => websiteController.payBill(req, res));
 module.exports = router;

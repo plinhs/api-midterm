@@ -33,5 +33,6 @@ const BankController = require('../controllers/BankController');
 //const auth = require('../middleware/auth');
 
 //router.get('/unpaid-bills', auth, (req, res) => BankController.getUnpaidBills(req, res));
+router.get('/unpaid-bills', (req, res) => BankController.getUnpaidBills(req, res));
 
 module.exports = router;

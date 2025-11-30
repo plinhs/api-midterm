@@ -64,5 +64,7 @@ const MobileController = require('../controllers/MobileController');
 
 //router.get('/query-bill', auth, (req, res) => MobileController.queryBill(req, res));
 //router.get('/query-bill-detailed', auth, (req, res) => MobileController.queryBillDetailed(req, res));
+router.get('/query-bill', (req, res) => MobileController.queryBill(req, res));
+router.get('/query-bill-detailed', (req, res) => MobileController.queryBillDetailed(req, res));
 
 module.exports = router;

@@ -19,5 +19,10 @@ app.get('/', (req, res) => {
     res.send("Mobile Billing API is running...");
 });
 
+app.get("/debug-secret", (req, res) => {
+    res.send(process.env.JWT_SECRET);
+});
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

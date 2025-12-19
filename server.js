@@ -13,6 +13,7 @@ app.use('/api/v1/bank', require('./routes/bankRoutes'));
 app.use('/api/v1/web', require('./routes/websiteRoutes'));
 app.use('/api/v1/admin', require('./routes/adminRoutes'));
 
+
 swaggerDocs(app);
 
 app.get('/', (req, res) => {

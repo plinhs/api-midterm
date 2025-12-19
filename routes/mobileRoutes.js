@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /mobile/query-bill:
+ * /mobile/bills:
  *   get:
  *     summary: Query bill
  *     tags: [Mobile]
@@ -26,11 +26,13 @@
  *     responses:
  *       200:
  *         description: Bill details returned
+ *       429:
+ *         description: Rate limit exceeded (3 queries per day)
  */
 
 /**
  * @swagger
- * /mobile/query-bill-detailed:
+ * /mobile/bills/detailed:
  *   get:
  *     summary: Query detailed bill
  *     tags: [Mobile]
@@ -50,20 +52,21 @@
  *         description: Detailed bill returned
  *       404:
  *         description: Bill not found
+ *       429:
+ *         description: Rate limit exceeded (3 queries per day)
  */
 
 
 const express = require('express');
 const router = express.Router();
 const MobileController = require('../controllers/MobileController');
-//const auth = require('../middleware/auth');
+const { rateLimitMobile } = require('../middleware/rateLimit');
+const { mobileAuth } = require('../middleware/auth');
 
-//router.get('/query-bill', auth, (req, res) => MobileController.queryBill(req, res));
-//router.get('/query-bill-detailed', auth, (req, res) => MobileController.queryBillDetailed(req, res));
-const mobileController = new MobileController(); // <-- CREATE INSTANCE
+const mobileController = new MobileController();
 
-router.get('/query-bill', (req, res) => mobileController.queryBill(req, res));
-router.get('/query-bill-detailed', (req, res) => mobileController.queryBillDetailed(req, res));
+router.get('/bills', mobileAuth, rateLimitMobile, (req, res) => mobileController.queryBill(req, res));
+router.get('/bills/detailed', mobileAuth, (req, res) => mobileController.queryBillDetailed(req, res));
 
 
 module.exports = router;

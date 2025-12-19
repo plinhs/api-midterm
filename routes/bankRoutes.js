@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /bank/unpaid-bills:
+ * /bank/bills:
  *   get:
  *     summary: Get unpaid bills
  *     tags: [Banking]
@@ -29,11 +29,10 @@
 const express = require('express');
 const router = express.Router();
 const BankController = require('../controllers/BankController');
-//const auth = require('../middleware/auth');
+const { bankAuth } = require('../middleware/auth');
 
-//router.get('/unpaid-bills', auth, (req, res) => BankController.getUnpaidBills(req, res));
 const bankController = new BankController();
 
-router.get('/unpaid-bills', (req, res) => bankController.getUnpaidBills(req, res));
+router.get('/bills', bankAuth, (req, res) => bankController.getUnpaidBills(req, res));
 
 module.exports = router;

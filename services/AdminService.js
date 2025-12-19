@@ -27,7 +27,6 @@ class AdminService {
         const results = [];
 
         for (const bill of billList) {
-
             const subscriber = await this.subscriberRepo.getSubscriberById(bill.subscriber_no);
             if (!subscriber) {
                 results.push({ bill, status: "Error: subscriber not found" });
@@ -45,6 +44,26 @@ class AdminService {
         }
 
         return results;
+    }
+
+    async addBillBatchFromCSV(csvData) {
+        const lines = csvData.trim().split('\n');
+        const billList = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].replace('\r', '').split(',');
+            const bill = {
+                subscriber_no: parseInt(values[0]),
+                month: values[1],
+                total_amount: parseFloat(values[2]),
+                paid_amount: parseFloat(values[3]) || 0,
+                status: values[4] || 'pending',
+                details: values[5] || null
+            };
+            billList.push(bill);
+        }
+
+        return await this.addBillBatch(billList);
     }
 }
 

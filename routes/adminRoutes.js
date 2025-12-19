@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /admin/add-bill:
+ * /admin/bills:
  *   post:
  *     summary: Add a bill
  *     tags: [Admin]
@@ -36,46 +36,39 @@
 
 /**
  * @swagger
- * /admin/add-bill-batch:
+ * /admin/bills/batch:
  *   post:
- *     summary: Add multiple bills from JSON list
+ *     summary: Add multiple bills from CSV file
  *     tags: [Admin]
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
- *               list:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     subscriber_no:
- *                       type: integer
- *                     month:
- *                       type: string
- *                     total_amount:
- *                       type: number
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *                 description: CSV file with bill data
  *     responses:
  *       200:
  *         description: Batch processing result
  *       400:
- *         description: Invalid batch format
+ *         description: Invalid CSV format
  */
 
 
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const AdminController = require('../controllers/AdminController');
-//const auth = require('../middleware/auth');
+const { adminAuth } = require('../middleware/auth');
 
-//router.post('/add-bill', auth, (req, res) => AdminController.addBill(req, res));
-//router.post('/add-bill-batch', auth, (req, res) => AdminController.addBillBatch(req, res));
+const upload = multer({ storage: multer.memoryStorage() });
 const adminController = new AdminController();
 
-router.post('/add-bill', (req, res) => adminController.addBill(req, res));
-router.post('/add-bill-batch', (req, res) => adminController.addBillBatch(req, res));
+router.post('/bills', adminAuth, (req, res) => adminController.addBill(req, res));
+router.post('/bills/batch', adminAuth, upload.single('file'), (req, res) => adminController.addBillBatch(req, res));
 
 module.exports = router;

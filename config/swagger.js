@@ -20,11 +20,26 @@ const options = {
         description: "Local Development",
       },
     ],
+
+    components: {
+      securitySchemes: {
+        ApiKeyAuth: {
+          type: "apiKey",
+          in: "header",
+          name: "X-API-KEY",
+        },
+      },
+    },
+    security: [
+      {
+        ApiKeyAuth: [],
+      },
+    ],
   },
 
-  // FIX: correct glob from /config to /routes
   apis: [path.join(__dirname, "../routes/*.js")],
 };
+
 
 const swaggerSpec = swaggerJsdoc(options);
 

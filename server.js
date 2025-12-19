@@ -1,4 +1,7 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require('express');
 const app = express();
 const swaggerDocs = require('./config/swagger');
@@ -20,15 +23,10 @@ app.get('/', (req, res) => {
     res.send("Mobile Billing API is running...");
 });
 
-app.get("/debug-env", (req, res) => {
-    res.json({
-        JWT_SECRET: process.env.JWT_SECRET,
-        jwt_secret: process.env.jwt_secret,
-        keys: Object.keys(process.env)
-    });
-});
-
 
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+

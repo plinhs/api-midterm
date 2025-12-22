@@ -81,6 +81,6 @@ const upload = multer({ storage: multer.memoryStorage() });
 const adminController = new AdminController();
 
 router.post('/bills', adminAuth, (req, res) => adminController.addBill(req, res));
-router.post('/bills/batch', adminAuth, upload.single('file'), (req, res) => adminController.addBillBatch(req, res));
+router.post('/bills/batch', adminAuth, (req, res) => adminController.addBillBatch(req, res));
 
 module.exports = router;

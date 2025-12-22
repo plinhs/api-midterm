@@ -11,18 +11,20 @@ class AdminController{
         res.status(200).json(result);
     }
     
-    async addBillBatch(req, res){
-        try {
-            if (!req.file) {
-                return res.status(400).json({ error: "CSV file required" });
-            }
-            
-            const csvData = req.file.buffer.toString();
-            const result = await this.adminService.addBillBatchFromCSV(csvData);
-            res.status(200).json(result);
-        } catch (error) {
-            res.status(400).json({ error: error.message });
+    async addBillBatch(req, res) {
+    try {
+        const billList = req.body.list;
+
+        if (!Array.isArray(billList) || billList.length === 0) {
+        return res.status(400).json({ error: "Body must include non-empty 'list' array" });
         }
+
+        const result = await this.adminService.addBillBatch(billList);
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
+    }
+
 }
 module.exports = AdminController;

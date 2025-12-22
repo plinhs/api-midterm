@@ -38,24 +38,36 @@
  * @swagger
  * /admin/bills/batch:
  *   post:
- *     summary: Add multiple bills from CSV file
+ *     summary: Add multiple bills from JSON list
  *     tags: [Admin]
  *     requestBody:
  *       required: true
  *       content:
- *         multipart/form-data:
+ *         application/json:
  *           schema:
  *             type: object
+ *             required: [list]
  *             properties:
- *               file:
- *                 type: string
- *                 format: binary
- *                 description: CSV file with bill data
+ *               list:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   required: [subscriber_no, month, total_amount]
+ *                   properties:
+ *                     subscriber_no:
+ *                       type: integer
+ *                       example: 1001
+ *                     month:
+ *                       type: string
+ *                       example: "2024-11"
+ *                     total_amount:
+ *                       type: number
+ *                       example: 150
  *     responses:
  *       200:
  *         description: Batch processing result
  *       400:
- *         description: Invalid CSV format
+ *         description: Invalid batch format
  */
 
 
